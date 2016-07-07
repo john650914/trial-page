@@ -1,0 +1,4 @@
+@mixin setBgImg($name,$ext) 
+	background: url("../images/#{$name}.#{$ext}")
+.logo
+	+setBgImg(header/logo, jpg)

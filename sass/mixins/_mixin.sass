@@ -1,0 +1,353 @@
+//every page default width
+$widthAll: (container: 960px, mobile64: 640px )
+
+
+//image link
+$imgAll: "../img/spritesheet.png?05161042"
+
+
+// color
+// onge == light orange
+$colors: (basic: hsl(54, 100%, 50%), light: hsl(0, 0%, 73%), dark: hsl(0, 0%, 13%), middle: hsl(0, 0%, 50%), onge: hsl(13, 87%, 56%), green: hsl(86, 50%, 54%))
+@function color($color)
+	@return map-get($colors, $color);
+//new
+@function clor($clor, $light, $value)
+	@if $light == 0
+		@return color($clor)
+	@if $light == 1
+		@return lighten(color($clor), $value)
+	@else if $light == 2
+		@return darken(color($clor), $value)
+
+
+// font size
+=fsiz($fs)
+	font-size: $fs/16+rem
+
+
+=bgCover($url: "http://placehold.it/960x600")
+	background: url($url) center no-repeat
+	background-size: cover
+
+
+// overlay 必須高於全部，但是低於popup
+
+$zIndex: figure, img-people, sidebar, optionGroup, img-collect, effect, topMenuWrap, fileUpload-img, fileUpload-span, fileUpload, botMenu, memMenu-header, fa-angle,  sendMsg, headBarWrap, headerBarWrap, overlay, popupTripadvisor, popupImprove, options, popupOrderlist, popupConfirm, popupQR, popupConnect, menu-m, botMoreMenu, hMenuList-m, hSearch-m, popupMPWD, popupSended, popupQuest, popupCar, popupPolicy, popupRule, popupRegister, popupRegister1, popupLogin, popupLogin1, popupForgetPwd, popupList, popupResetPwd, popupRegiSucc, popupAuthSucc, popupAuthFail, popupCollect, popupRoomInfo, popupProcessing, popWait, weixinQcode, selector, popupSocial, popupChartPolicy, tripWrap
+
+@function zindex($zi)
+	@return index($zIndex, $zi)
+
+
+//clear float
+=clearFix
+	content:""
+	display: block
+	clear: both
+
+
+// within form element
+// .label class set
+=labelSet($w)
+	=icon
+		width: 380px
+		border: 1px solid color(light)
+		margin-bottom: 30px
+		+dfx(n,n,n,n,n)
+		@content
+		*
+			font-size: .875rem
+		.icon
+			width: 42px;	height: 42px
+			padding: 11px;
+			box-sizing: border-box;
+			border-right: 1px solid color(light)
+			i
+				background-image: url($imgAll)
+				display: inline-block
+	=input
+		.input
+			width: 100%
+			+dfx(n,n,n,n,n)
+			position: relative
+			input
+				width: 100%;	height: 42px
+				border: none;
+			.errMsg
+				margin-left: 8px
+				color: red
+				line-height: 1.5
+				position: absolute; top: 43px;	left: 0
+
+	@if $w == all
+		+icon
+		+input
+	@else if $w == icon
+		+icon
+	@else if $w == input
+		+input
+
+
+
+// form element
+// select prettify
+=selectSet($selName)
+	margin-left: -1px
+	padding: 8px 10px;
+	box-sizing: border-box
+	border: none
+	position: relative
+	.#{$selName}
+		width: 90px;
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		-ms-appearance: none;
+		appearance: none;
+		border: none;
+		outline: none
+		position: relative;	top: 3px
+		z-index: 2
+		opacity: .7
+		&::-ms-expand
+			display: none
+	.fa-angle-down
+		position: absolute;	right: 10px;	bottom: 12px
+		z-index: 1
+
+=selectNew
+	width: 100%
+	background-color: transparent
+	-moz-appearance: none
+	-webkit-appearance: none
+	-ms-appearance: none
+	appearance: none
+	border: none
+	outline: none
+	position: relative
+	z-index: 2
+	&::-ms-expand
+		display: none
+
+// button wrapper
+=btnWrap
+	margin-top: 30px
+	margin: 0 auto;
+	+dfx(3,n,n,n,n)
+	@content;
+
+
+// input type=button
+=btnBasic
+	width: 140px;	height: 42px
+	border: none
+	cursor: pointer
+	background-color: clor(basic, 0,0)
+	outline: none
+	@content;
+	&:active
+		position: relative;	bottom: 1px;	right: 1px
+
+
+// tag A convert to button
+=btnTagA
+	width: 140px;	height: 42px
+	background-color: clor(basic, 0,0)
+	line-height: 3
+	text-align: center
+	text-decoration: none
+	display: block
+	@content
+	&:active
+		position: relative;	bottom: 1px;	right: 1px
+
+// errorBlock ul li
+=errorBlock
+	width: 95%
+	background-color: hsl(0, 100%, 96%)
+	border: 1px solid #ebccd1
+	margin: 0 auto
+	margin-top: 15px
+	margin-bottom: 15px
+	padding: 10px
+	>li
+		color: #a94442
+		line-height: 20px
+
+//Tag A convert to block default setting
+=defaultTagA
+	height: 30px
+	line-height: 30px
+	text-align: center
+	text-decoration: none
+	color: hsl(0, 0%, 35%)
+	display: inline-block
+
+
+// display flex
+=dfx($justifyIdx, $alignCtntIdx, $flexDirectIdx, $flexWrapIdx, $alignItemIdx)
+	$justifyContent: flex-start,flex-end, center, space-around, space-between
+	$alignContent: stretch, flex-start, flex-end, center, space-around, space-between
+	$flexDirection: row, row-reverse, column, column-reverse
+	$flexWrap: nowrap, wrap, wrap-reverse
+	$alignItems: stretch, center, flex-start, flex-end, baseline
+
+	display: flex
+	display: -webkit-flex
+	display: -moz-flex
+	display: -ms-flex
+
+	@if $justifyIdx != "n"
+		justify-content: nth($justifyContent, $justifyIdx)
+		-webkit-justify-content: nth($justifyContent, $justifyIdx)
+		-moz-justify-content: nth($justifyContent, $justifyIdx)
+		-ms-justify-content: nth($justifyContent, $justifyIdx)
+
+	@if $alignCtntIdx != "n"
+		align-content: nth($alignContent, $alignCtntIdx)
+		-webkit-align-content: nth($alignContent, $alignCtntIdx)
+		-moz-align-content: nth($alignContent, $alignCtntIdx)
+		-ms-align-content: nth($alignContent, $alignCtntIdx)
+
+	@if $flexDirectIdx != "n"
+		flex-direction: nth($flexDirection, $flexDirectIdx)
+		-webkit-flex-direction: nth($flexDirection, $flexDirectIdx)
+		-moz-flex-direction: nth($flexDirection, $flexDirectIdx)
+		-ms-flex-direction: nth($flexDirection, $flexDirectIdx)
+
+	@if $flexWrapIdx != "n"
+		flex-wrap: nth($flexWrap, $flexWrapIdx)
+		-webkit-flex-wrap: nth($flexWrap, $flexWrapIdx)
+		-moz-flex-wrap: nth($flexWrap, $flexWrapIdx)
+		-ms-flex-wrap: nth($flexWrap, $flexWrapIdx)
+
+	@if $alignItemIdx != "n"
+		align-items: nth($alignItems, $alignItemIdx)
+		-webkit-align-items: nth($alignItems, $alignItemIdx)
+		-moz-align-items: nth($alignItems, $alignItemIdx)
+		-ms-align-items: nth($alignItems, $alignItemIdx)
+
+	@content
+
+=dfxSub($alignSelfIdx, $flexIdx, $orderNum)
+	$alignSelf: auto, flex-start, flex-end, center, baseline, stretch
+
+	@if $alignSelfIdx != "n"
+		align-self: nth($alignSelf, $alignSelfIdx)
+		-webkit-align-self: nth($alignSelf, $alignSelfIdx)
+		-moz-align-self: nth($alignSelf, $alignSelfIdx)
+		-ms-align-self: nth($alignSelf, $alignSelfIdx)
+
+	@if $flexIdx != "n"
+		flex: $flexIdx
+		-webkit-flex: $flexIdx
+		-moz-flex: $flexIdx
+		-ms-flex: $flexIdx
+
+	@if $orderNum != "n"
+		order: $orderNum
+		-webkit-order: $orderNum
+		-moz-order: $orderNum
+		-ms-order: $orderNum
+
+	@content
+
+
+=dfxGrow($x)
+	flex-grow: $x
+	-webkit-flex-grow: $x
+	-moz-flex-grow: $x
+	-ms-flex-grow: $x
+
+=dfxShrink($x)
+	flex-shrink: $x
+	-webkit-flex-shrink: $x
+	-moz-flex-shrink: $x
+	-ms-flex-shrink: $x
+
+=dfxBasis($x)
+	flex-basis: $x
+	-webkit-flex-basis: $x
+	-moz-flex-basis: $x
+	-ms-flex-basis: $x
+
+
+
+//slider button
+=sliderBtn
+	+dfx(5,n,n,n,n)
+	width: 100%;	height: 30px
+	margin: 0 auto
+	position: absolute;top: 35px;	left: 0;	right: 0
+	.fa-angle-right, .fa-angle-left
+		+fsiz(64)	//original +fsiz(40)
+		color: white
+		opacity: .7
+		text-shadow: 1px 1px 3px hsl(0, 0%, 23%)
+		z-index: zindex(fa-angle)
+		cursor: pointer
+
+
+// popup module
+=popup($zi)
+	width: 340px;
+	margin: 0 auto
+	padding: 64px 20px 20px
+	box-sizing: border-box
+	background-color: white
+	position: fixed;	top: 80px;	left: 0;	right: 0
+	z-index: zindex($zi)
+	display: none
+	.closeBtn
+		width: 30px;	height: 30px
+		background-color: color(basic)
+		position: absolute;	top: 0;	right: -30px
+		cursor: pointer
+		i
+			margin: 5px 0 0 5px;
+			background-image: url($imgAll)
+			display: block;
+	[class$=poplogo]
+		margin: 0 auto;
+		position: absolute;	top: -52px;	left: 0;	right: 0
+		background-image: url($imgAll)
+	h4
+		margin-bottom: 20px
+		text-align: center
+		font-size: 1.5rem
+		font-weight: bold
+		color: color(dark)
+
+// circle
+=circle($size, $color: transparent)
+	width: $size+px
+	height: $size+px
+	border-radius: $size+px
+	background-color: $color
+
+// popup new module
+=popupNew($classId)
+	padding: 35px 0
+	box-sizing: border-box
+	background-color: white
+	border-radius: 25px
+	display: none
+	z-index: zindex($classId)
+	.closeBtn
+		+circle(24)
+		border: 2px solid black
+		+dfx(3,n,n,n,2)
+		cursor: pointer
+		position: absolute
+		top: 10px
+		right: 10px
+	h4
+		margin-bottom: 20px
+		text-align: center
+		+fsiz(30)
+		font-weight: bold
+		color: color(dark)
+
+=ellipsis
+	overflow : hidden
+	text-overflow : ellipsis
+	white-space : nowrap
