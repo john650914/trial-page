@@ -1,5 +1,7 @@
-@mixin setBgImg($name,$ext) 
-	background: url("../images/#{$name}.#{$ext}")
-.logo
-	+setBgImg(header/logo, jpg)
-	color: red
+@import font-awesome-4.6.3/scss/font-awesome
+.icon:before
+	content: "\f0b2"
+	font-family: FontAwesome
+	display: inline-block
+	font-size: 22px
+	vertical-align: middle

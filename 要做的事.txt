@@ -18,6 +18,8 @@ flex
 
 
 常用的Mixin：
-clearfix
-hidetext
+clear-fix
+hide-text
+add-icon
+pager
 再去找一些用的上的
