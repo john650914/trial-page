@@ -1,0 +1,99 @@
+/*_header.sass*/
+.page-header
+	background: #fff
+.page-header-wrap
+	height: 69px
+	width: 908px
+	margin: 0 auto
+	position: relative
+	+display-flex()
+	+align-items(center)
+	+justify-content(flex-end)
+.header-logo
+	position: absolute
+	top: 10px
+	left: 0
+	&:hover
+		margin-top: -2px
+	a
+		+hide-text
+		@extend .logo-tripitta
+		width: 138px
+		height: 49px
+.header-right
+	+display-flex()
+	+align-items(center)
+.header-login
+	font-size: 0.85rem
+	ul
+		+display-flex()
+		li
+			position: relative
+			padding: 0 6px
+			&:last-child
+				padding-right: 0
+				margin-right: -5px
+			&:last-child:after
+				content: ""
+				position: absolute
+				left: 0
+				top: 5px
+				height: 12px
+				border-left: 1px solid hsl(0, 0%, 56%)
+			a
+				color: $font-black
+				padding: 4px
+				display: block
+				&:hover
+					color: $font-black-hover
+.header-currency
+	font-size: 0.85rem
+.header-currency-sel
+	+add-icon(after, "\f107")
+		padding: 0 20px 0 10px
+	padding: 5px 0
+	cursor: pointer
+	&:hover
+		color: $font-black-hover
+.header-currency-list
+	display: none
+
+.main-menu
+	background-color: $theme-yellow
+	.main-menu-wrap
+		width: 908px
+		height: 69px
+		margin: 0 auto
+		+display-flex()
+		+align-items(center)
+		nav
+			+flex(7.3)
+			ul
+				+display-flex()
+				li
+					+flex(1)
+					a
+						display: block
+						text-align: center
+						padding: 5px 0
+						border-right: 1px solid hsl(54, 100%, 47%)
+						color: $font-black
+						font-size: 0.97rem
+						font-weight: bold
+						&:hover
+							color: $font-black-hover
+					&:first-child
+						a
+							border-left: 1px solid hsl(54, 100%, 47%)
+.site-search
+	+flex(0.7)
+	height: 50px
+	+display-flex()
+	+align-items(center)
+	+justify-content(flex-end)
+	+add-icon(before, "\f002")
+		font-size: 1.3rem
+	&:hover
+		cursor: pointer
+		position: relative
+		top: -2px

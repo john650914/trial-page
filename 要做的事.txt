@@ -1,12 +1,11 @@
 default.sass
 css3
-mixin
-page-hotel-list
-footer
-utility
-
 font-awesome
-flex
+mixin
+utility
+header
+footer
+attractions
 
 
 
@@ -18,8 +17,30 @@ flex
 
 
 常用的Mixin：
-clear-fix
-hide-text
 add-icon
 pager
-再去找一些用的上的
+
+
+
+
+colors :
+theme-yellow
+bg-light-gray
+font-black
+font-gray
+font-white
+
+
+
+
+.hide-text {
+text-indent: 100%;
+white-space: nowrap;
+overflow: hidden;
+}
+
+.clearfix:after{
+content: "";
+display: table;
+clear: both;
+}

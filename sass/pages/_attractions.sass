@@ -1,0 +1,76 @@
+/*_attractions.sass*/
+@import url(https://fonts.googleapis.com/css?family=Nunito)
+
+.key-vision
+	height: 590px
+	background: url(../images/key-vision/kv01.jpg) 50% 50% no-repeat
+	background-size: cover
+
+.instant-menu
+	position: relative
+	margin-top: -92px
+	background-color: hsla(0, 0%, 100%, .8)
+.instant-menu-wrap
+	width: 938px
+	margin: 0 auto
+	ul
+		+display-flex()
+		+align-items(center)
+		height: 92px
+		li
+			+flex(1)
+			position: relative
+			text-align: center
+			border-left: 1px solid hsla(0, 0%, 0%, .15)
+			&:first-child
+				border-left: none
+			&:after
+				position: absolute
+				top: -53px
+				content: ""
+				width: 70px
+				height: 35px
+				left: 50%
+				margin-left: -35px
+				border-radius: 100px 100px 0 0
+				background-color: hsla(0, 0%, 100%, .8)
+				color: hsl(0, 0%, 43%)
+				font-size: 1.4rem
+				padding-top: 13px
+				box-sizing: border-box
+			a
+				display: block
+				color: $font-black
+				font-size: 1.4rem
+				line-height: 28px
+				&:hover
+					color: $font-black-hover
+				span
+					font-size: 1.15rem
+					display: block
+					font-family: Nunito
+			ul
+				display: none
+	.im-food
+		+add-icon(after, "\f1fd")
+	.im-location
+		+add-icon(after, "\f1bb")
+	.im-booking
+		+add-icon(after, "\f0f7")
+	.im-activity
+		+add-icon(after, "\f0a1")
+	.im-gift
+		+add-icon(after, "\f06b")
+
+.geo-menu
+	background: black
+.geo-menu-wrap
+	width: 938px
+	margin: 0 auto
+	ul
+		+display-flex()
+		li
+			+flex(1)
+			a
+				height: 162px
+				display: block
